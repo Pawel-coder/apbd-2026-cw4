@@ -16,7 +16,10 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie01_StudenciZWarszawy()
     {
-        throw Niezaimplementowano(nameof(Zadanie01_StudenciZWarszawy));
+        var result = DaneUczelni.Studenci
+            .Where(s=>s.Miasto.Equals("Warsaw"))
+            .Select(s=>$"{s.NumerIndeksu}, {s.Imie}, {s.Nazwisko}, {s.Miasto}");
+        return result;
     }
 
     /// <summary>
@@ -30,7 +33,9 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie02_AdresyEmailStudentow()
     {
-        throw Niezaimplementowano(nameof(Zadanie02_AdresyEmailStudentow));
+        var result = DaneUczelni.Studenci
+            .Select(s=>$"{s.Email}");
+        return result;
     }
 
     /// <summary>
@@ -45,7 +50,10 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie03_StudenciPosortowani()
     {
-        throw Niezaimplementowano(nameof(Zadanie03_StudenciPosortowani));
+        var result = DaneUczelni.Studenci
+            .OrderBy(s=>s.Nazwisko).ThenBy(s=>s.Imie)
+            .Select(s=>$"{s.NumerIndeksu}, {s.Imie}, {s.Nazwisko}");
+        return result;
     }
 
     /// <summary>
@@ -60,7 +68,9 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie04_PierwszyPrzedmiotAnalityczny()
     {
-        throw Niezaimplementowano(nameof(Zadanie04_PierwszyPrzedmiotAnalityczny));
+        var result = DaneUczelni.Przedmioty
+            .FirstOrDefault(p=>p.Kategoria.Equals("Analytics"));
+        return [result==null?"Taki przedmiot nie istnieje":$"{result.Nazwa},{result.DataStartu}"];
     }
 
     /// <summary>
@@ -77,7 +87,9 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie05_CzyIstniejeNieaktywneZapisanie()
     {
-        throw Niezaimplementowano(nameof(Zadanie05_CzyIstniejeNieaktywneZapisanie));
+        var result = DaneUczelni.Zapisy
+            .FirstOrDefault(p=>p.CzyAktywny.Equals(false));//Popraw to zadanie
+        return [result.CzyAktywny.ToString()];
     }
 
     /// <summary>
@@ -106,7 +118,9 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie07_LiczbaAktywnychZapisow()
     {
-        throw Niezaimplementowano(nameof(Zadanie07_LiczbaAktywnychZapisow));
+        var result = DaneUczelni.Zapisy
+            .Count(p => p.CzyAktywny.Equals(true));
+        return [result.ToString()];
     }
 
     /// <summary>
@@ -120,7 +134,10 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie08_UnikalneMiastaStudentow()
     {
-        throw Niezaimplementowano(nameof(Zadanie08_UnikalneMiastaStudentow));
+        var result = DaneUczelni.Studenci
+            .OrderBy(s=>s.Miasto)
+            .Select(s=>$"{s.Miasto}").Distinct();
+        return result;
     }
 
     /// <summary>
@@ -135,7 +152,10 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie09_TrzyNajnowszeZapisy()
     {
-        throw Niezaimplementowano(nameof(Zadanie09_TrzyNajnowszeZapisy));
+        var result = DaneUczelni.Zapisy
+            .OrderBy(s=>s.Nazwisko).ThenBy(s=>s.Imie)
+            .Select(s=>$"{s.NumerIndeksu}, {s.Imie}, {s.Nazwisko}");
+        return result;
     }
 
     /// <summary>
